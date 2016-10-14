@@ -22,7 +22,6 @@
         <servlet.version>3.1.0</servlet.version>
         <simpletour.version>1.0</simpletour.version>
         <jackson.version>2.6.3</jackson.version>
-        <!--<hibernate.version>5.1.0.Final</hibernate.version>-->
         <slf4j.version>1.7.19</slf4j.version>
         <httpClient.version>4.4.1</httpClient.version>
     </properties>
@@ -180,11 +179,6 @@
                 <artifactId>postgresql</artifactId>
                 <version>9.4.1207</version>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>org.hibernate</groupId>-->
-                <!--<artifactId>hibernate-validator</artifactId>-->
-                <!--<version>${hibernate.version}</version>-->
-            <!--</dependency>-->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
@@ -233,7 +227,7 @@
                 <version>${httpClient.version}</version>
                 <scope>test</scope>
             </dependency>
-
         </dependencies>
+
     </dependencyManagement>
 </project>

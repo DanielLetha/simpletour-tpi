@@ -85,5 +85,4 @@ public class QqOauthController {
     public Object success(HttpServletRequest request){
         return request.getSession().getAttribute("oauthUser");
     }
-
 }
