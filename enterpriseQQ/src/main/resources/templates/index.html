@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Insert title here</title>
 </head>
 <body>
 <a th:each="oAuthService:${oAuthServices}" th:href="@{${oAuthService.authorizationUrl}}" href="#"
-   th:text="${oAuthService.oAuthType}">企业QQ登录</a>
+   th:text="${oAuthService.oAuthType}">qq</a>
 </body>
 </html>
