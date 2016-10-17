@@ -6,11 +6,12 @@ import com.simpletour.tpi.enterpriseQQ.oauth.service.QqOAuthService;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.SignatureType;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import javax.validation.Valid;
 
 /**
  * @Brief :  ${用途}
@@ -35,9 +36,12 @@ public class QqOAuthConfig {
     @Value("${demo.callback}")
     String callback;
 
+    @Value("${oAuth.qq.state}")
+    String state;
+
     @Bean
     public QqApi qqApi(){
-        return new QqApi();
+        return new QqApi(state);
     }
 
     @Bean

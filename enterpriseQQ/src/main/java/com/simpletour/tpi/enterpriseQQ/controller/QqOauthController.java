@@ -5,8 +5,6 @@ import com.simpletour.tpi.enterpriseQQ.entity.OAuthUser;
 import com.simpletour.tpi.enterpriseQQ.entity.User;
 import com.simpletour.tpi.enterpriseQQ.oauth.service.OAuthServiceDeractor;
 import com.simpletour.tpi.enterpriseQQ.oauth.service.OAuthServices;
-import com.simpletour.tpi.enterpriseQQ.repository.OauthUserRepository;
-import com.simpletour.tpi.enterpriseQQ.repository.UserRepository;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +28,10 @@ public class QqOauthController {
 
     @Autowired
     OAuthServices oAuthServices;
-    @Autowired
-    OauthUserRepository oauthUserRepository;
-    @Autowired
-    UserRepository userRepository;
+//    @Autowired
+//    OauthUserRepository oauthUserRepository;
+//    @Autowired
+//    UserRepository userRepository;
 
     @RequestMapping(value = {"","/login"},method = RequestMethod.GET)
     public String login(Model model){
@@ -47,13 +45,13 @@ public class QqOauthController {
         OAuthServiceDeractor oAuthService = oAuthServices.getOAuthService(type);
         Token accessToken = oAuthService.getAccessToken(null, new Verifier(code));
         OAuthUser oAuthInfo = oAuthService.getOAuthUser(accessToken);
-        OAuthUser oAuthUser = oauthUserRepository.findByOAuthTypeAndOAuthId(oAuthInfo.getoAuthType(),
-                oAuthInfo.getoAuthId());
-        if(oAuthUser == null){
+//        OAuthUser oAuthUser = oauthUserRepository.findByOAuthTypeAndOAuthId(oAuthInfo.getoAuthType(),
+//                oAuthInfo.getoAuthId());
+        if(oAuthInfo == null){
             model.addAttribute("oAuthInfo", oAuthInfo);
             return "register";
         }
-        request.getSession().setAttribute("oauthUser", oAuthUser);
+        request.getSession().setAttribute("oauthUser", oAuthInfo);
         return "redirect:/success";
     }
 
@@ -65,17 +63,18 @@ public class QqOauthController {
         OAuthUser oAuthInfo = new OAuthUser();
         oAuthInfo.setoAuthId(oAuthId);
         oAuthInfo.setoAuthType(oAuthType);
-        if(userRepository.findByUsername(user.getUsername()) != null){
+//        if(userRepository.findByUsername(user.getUsername()) != null){
+        if(oAuthInfo != null){
             model.addAttribute("errorMessage", "用户名已存在");
             model.addAttribute("oAuthInfo", oAuthInfo);
             return "register";
         }
-        user = userRepository.save(user);
-        OAuthUser oAuthUser = oauthUserRepository.findByOAuthTypeAndOAuthId(oAuthType, oAuthId);
-        if(oAuthUser == null){
-            oAuthInfo.setUser(user);
-            oAuthUser = oauthUserRepository.save(oAuthInfo);
-        }
+//        user = userRepository.save(user);
+//        OAuthUser oAuthUser = oauthUserRepository.findByOAuthTypeAndOAuthId(oAuthType, oAuthId);
+//        if(oAuthUser == null){
+//            oAuthInfo.setUser(user);
+//            oAuthUser = oauthUserRepository.save(oAuthInfo);
+//        }
         request.getSession().setAttribute("oauthUser", user);
         return "redirect:/success";
     }
