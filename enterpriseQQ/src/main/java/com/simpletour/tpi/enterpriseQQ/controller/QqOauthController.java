@@ -69,7 +69,6 @@ public class QqOauthController {
         String atokenUrl="https://openapi.b.qq.com/oauth2/token?grant_type=authorization_code&code="+code+"&app_id="+qqAppId+"&app_secret="+qqAppSecret+"&state="+state+"&redirect_uri="+callback;
         String tokenRet = HttpUtil.httpGet(atokenUrl);//返回带token的json字符串
         AuthorizeResult token = JSON.parseObject(tokenRet,AuthorizeResult.class);
-        String access_token= token.getData().getAccess_token();//取出token
         String openId = token.getData().getOpen_id();
 
         //根据code获取公司token
