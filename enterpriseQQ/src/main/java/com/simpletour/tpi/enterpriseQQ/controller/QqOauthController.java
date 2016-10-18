@@ -6,6 +6,7 @@ import com.simpletour.tpi.enterpriseQQ.QqApp;
 import com.simpletour.tpi.enterpriseQQ.entity.OAuthUser;
 import com.simpletour.tpi.enterpriseQQ.entity.OauthInfo;
 import com.simpletour.tpi.enterpriseQQ.result.AuthorizeResult;
+import com.simpletour.tpi.enterpriseQQ.result.ResultBean;
 import com.simpletour.tpi.enterpriseQQ.result.ResultHeader;
 import com.simpletour.tpi.enterpriseQQ.entity.User;
 import com.simpletour.tpi.enterpriseQQ.oauth.service.OAuthServiceDeractor;
@@ -52,8 +53,8 @@ public class QqOauthController {
 
     @RequestMapping(value = {""},method = RequestMethod.GET)
     @ResponseBody
-    public ResultHeader redirect_exam(Model model){
-        return new ResultHeader(0);
+    public ResultBean redirect_exam(Model model){
+        return new ResultBean(0);
     }
 
     @RequestMapping(value = {"/login"},method = RequestMethod.GET)
@@ -61,6 +62,15 @@ public class QqOauthController {
         model.addAttribute("oAuthServices", oAuthServices.getAllOAuthServices());
         return "index";
     }
+
+    /**
+     * 获取员工信息
+     * @param request
+     * @param response
+     * @param model
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = {"/userInfo"},method = RequestMethod.GET)
     @ResponseBody
     public OauthInfo userInfo(HttpServletRequest request, HttpServletResponse response,Model model) throws IOException{
@@ -91,7 +101,6 @@ public class QqOauthController {
                 user.setGender(sex);
                 user.setFigureurlQq1(figureurl_qq_1);
                 request.getSession().setAttribute("user", user);
-
             return user;
         }
         return null;
