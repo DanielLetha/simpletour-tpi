@@ -24,7 +24,7 @@ public class HttpUtil {
     private static String httpMethod(String urlstr,String type) throws IOException {
         URL url = new URL(urlstr);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
+        conn.setRequestMethod(type);
         conn.connect();
         InputStream is = conn.getInputStream();
 

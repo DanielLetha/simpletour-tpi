@@ -8,6 +8,7 @@ package com.simpletour.tpi.enterpriseQQ.result;
  * @Remark: ${Remark}
  */
 public class RequestTokenData {
+
     private String access_token;
 
     private String expires_in;

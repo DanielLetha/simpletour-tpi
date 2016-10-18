@@ -13,8 +13,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
  * @Remark: ${Remark}
  */
 @SpringBootApplication
-@EnableAutoConfiguration(exclude = {QqOAuthConfig.class,SecurityConfiguration.class})
-@EnableConfigurationProperties(QqOAuthConfig.class)
+@EnableAutoConfiguration(exclude = {SecurityConfiguration.class})
 public class QqApp  {
 
     public static void main(String[] args) {
